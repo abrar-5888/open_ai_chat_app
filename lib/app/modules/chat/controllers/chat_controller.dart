@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,7 +47,9 @@ class ChatController extends GetxController {
         _scrollToBottom();
       }
     } catch (e) {
-      print("Error in streaming: $e");
+      if (kDebugMode) {
+        print("Error in streaming: $e");
+      }
       // If error occurs, remove the empty AI message we added
       if (messages.isNotEmpty && messages.last.text.isEmpty) {
         messages.removeLast();
